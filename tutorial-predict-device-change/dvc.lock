@@ -1,0 +1,58 @@
+schema: '2.0'
+stages:
+  Features:
+    cmd: python src/featurize.py --config=params.yaml
+    deps:
+    - path: data/raw/target.feather
+      md5: b68f5c439b1bb1725037e22d0b3fbc9d
+      size: 4037466
+    - path: data/raw/user_features.feather
+      md5: 170138d124cb732d9f5658b12df9a0df
+      size: 131289906
+    - path: src/featurize.py
+      md5: e3415edab9d4f755839139b4cda8d705
+      size: 1621
+    params:
+      params.yaml:
+        Features:
+          features_path: ./data/processed/features.feather
+          scoring_features_path: ./data/processed/scoring_features.feather
+          predicted_target_path: ./data/processed/predicted_target.feather
+    outs:
+    - path: data/processed/features.feather
+      md5: f603cbc18eb63ff5188bc56f3c63d8e9
+      size: 132404770
+  Train:
+    cmd: python src/train.py --config=params.yaml
+    deps:
+    - path: data/processed/features.feather
+      md5: f603cbc18eb63ff5188bc56f3c63d8e9
+      size: 132404770
+    - path: src/train.py
+      md5: 4b9a0bf6bfb6671acadb479ba9c7bca6
+      size: 5073
+    params:
+      params.yaml:
+        Train:
+          top_K_coef: 0.05
+          model_path: ./models/model.joblib
+          train_metrics: ./reports/train_metrics.json
+          model_params:
+            iterations: 10
+            thread_count: 50
+            has_time: true
+            allow_writing_files: false
+            cat_features:
+            - feature_17
+            - feature_21
+            - feature_11
+            - feature_11
+            - feature_16
+            - feature_22
+    outs:
+    - path: models/model.joblib
+      md5: 97ec42256c97dbd53768b9b4b5a719de
+      size: 22230
+    - path: reports/train_metrics.json
+      md5: 46c15662e3f807a6b0af5aa37d64b42c
+      size: 446

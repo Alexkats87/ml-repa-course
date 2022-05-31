@@ -1,0 +1,22 @@
+stages:
+  Features:
+    cmd: python src/featurize.py --config=params.yaml
+    deps:
+    - data/raw/target.feather
+    - data/raw/user_features.feather
+    - src/featurize.py
+    params:
+    - Features
+    outs:
+    - data/processed/features.feather
+  Train:
+    cmd: python src/train.py --config=params.yaml
+    deps:
+    - data/processed/features.feather
+    - src/train.py
+    params:
+    - Train
+    outs:
+    - models/model.joblib
+    metrics:
+    - reports/train_metrics.json

@@ -1,0 +1,34 @@
+Base:
+  random_state: 42
+  log_level: DEBUG
+
+
+Data:
+  user_features_raw: ./data/raw/user_features.feather # train_x
+  target_raw: ./data/raw/target.feather # train_y
+  scoring_user_features_raw: ./data/raw/scoring_user_features.feather # test_x
+  scoring_target_raw: ./data/raw/scoring_target.feather # control for test_y
+
+
+Features:
+  features_path: ./data/processed/features.feather # train_x
+  scoring_features_path: ./data/processed/scoring_features.feather # test_x
+  predicted_target_path: ./data/processed/predicted_target.feather # prediction for test_y
+
+
+Train:
+  top_K_coef: 0.05
+  model_path: ./models/model.joblib
+  train_metrics: ./reports/train_metrics.json
+  model_params:
+    iterations: 10
+    thread_count: 50
+    has_time: True
+    allow_writing_files: False
+    cat_features:
+      - feature_17
+      - feature_21
+      - feature_11
+      - feature_11
+      - feature_16
+      - feature_22

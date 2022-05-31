@@ -1,0 +1,17 @@
+version: "3.6"
+
+services:
+
+  tutorial_base:
+    env_file:
+      - .env
+    build:
+      context: ./
+      args:
+        GIT_CONFIG_USER_NAME: $GIT_CONFIG_USER_NAME
+        GIT_CONFIG_EMAIL: $GIT_CONFIG_EMAIL
+    image: tutorial_base:latest
+    ports:
+      - 8888:8888
+    volumes:
+      - ./:/home/tutorial-predict-device-change

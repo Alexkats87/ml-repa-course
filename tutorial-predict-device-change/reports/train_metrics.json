@@ -1,0 +1,14 @@
+{
+    "lift_max": 2.112150973456816,
+    "lift_min": 2.0964878319828544,
+    "lift_std": 0.007651517626364342,
+    "lift_mean": 2.104739162031797,
+    "precision_at_k_max": 0.824549274052013,
+    "precision_at_k_min": 0.8159602191139712,
+    "precision_at_k_std": 0.003609463695961109,
+    "precision_at_k_mean": 0.8207466893580813,
+    "recall_at_k_max": 1.0,
+    "recall_at_k_min": 1.0,
+    "recall_at_k_std": 0.0,
+    "recall_at_k_mean": 1.0
+}
